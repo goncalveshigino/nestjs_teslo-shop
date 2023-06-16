@@ -2,6 +2,9 @@
 /dist
 /node_modules
 
+postgres/
+.env
+
 # Logs
 logs
 *.log
