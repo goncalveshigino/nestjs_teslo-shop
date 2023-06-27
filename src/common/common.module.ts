@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, ParseFilePipe } from '@nestjs/common';
 
 @Module({})
 export class CommonModule {}
