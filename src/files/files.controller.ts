@@ -6,12 +6,16 @@ import { Response } from 'express';
 
 
 import { fileNamer, fileFilter } from './helpers/helpers';
+import { ConfigService } from '@nestjs/config';
 
 
 @Controller('files')
 export class FilesController {
 
-  constructor(private readonly filesService: FilesService) {}
+  constructor(
+    private readonly filesService: FilesService, 
+    private readonly configService: ConfigService,
+  ) {}
 
 
     @Get('product/:imageName')
@@ -43,11 +47,9 @@ export class FilesController {
         throw new BadRequestException('Make sure that the file is an image');
       }
 
-      const secureUrl = `${ file.fieldname }`
+      const secureUrl = `${ this.configService.get('HOST_API') } ${ file.fieldname }`
 
-      return {
-        secureUrl
-      };
+      return { secureUrl };
    }
 
 }
